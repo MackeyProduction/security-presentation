@@ -1,23 +1,93 @@
-/* line 1, ../scss/app.scss */
+/* line 3, ../scss/app.scss */
 .page-header {
   padding-bottom: 9px;
   border-bottom: 1px solid #eee;
 }
 
-/* line 6, ../scss/app.scss */
+/* line 8, ../scss/app.scss */
 .review {
   padding-top: 10px;
 }
-/* line 9, ../scss/app.scss */
+/* line 11, ../scss/app.scss */
 .review__author {
   width: 100%;
   margin-bottom: 6px;
 }
-/* line 14, ../scss/app.scss */
+/* line 16, ../scss/app.scss */
 .review__comment {
   width: 100%;
   margin-bottom: 10px;
   text-align: justify;
   -ms-text-justify: inter-word;
   text-justify: inter-word;
+}
+
+/* line 25, ../scss/app.scss */
+.welcomeTeaser {
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  height: 100vh;
+  width: 100%;
+  min-height: 100%;
+  background-size: cover;
+  background-image: url("../images/logo.jpg");
+  background-position: 100% 70%;
+}
+/* line 36, ../scss/app.scss */
+.welcomeTeaser.after {
+  position: absolute;
+  opacity: 0.6;
+  background: #333;
+}
+/* line 42, ../scss/app.scss */
+.welcomeTeaser-inner {
+  margin-top: 15%;
+  padding-right: 60px;
+  padding-left: 60px;
+  padding-top: 120px;
+}
+@media (max-width: 766px) {
+  /* line 42, ../scss/app.scss */
+  .welcomeTeaser-inner {
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+  }
+}
+/* line 54, ../scss/app.scss */
+.welcomeTeaser__description {
+  position: relative;
+  color: #fff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+/* line 60, ../scss/app.scss */
+.welcomeTeaser__description a {
+  color: #fff;
+}
+/* line 63, ../scss/app.scss */
+.welcomeTeaser__description a:hover {
+  color: orange;
+  text-decoration: none;
+}
+/* line 69, ../scss/app.scss */
+.welcomeTeaser__description-headline > h1 {
+  margin-right: 10px;
+  margin-bottom: 20px;
+}
+@media (min-width: 560px) {
+  /* line 69, ../scss/app.scss */
+  .welcomeTeaser__description-headline > h1 {
+    font-size: 64px;
+  }
+}
+@media (max-width: 766px) {
+  /* line 69, ../scss/app.scss */
+  .welcomeTeaser__description-headline > h1 {
+    word-break: break-all;
+  }
+}
+/* line 82, ../scss/app.scss */
+.welcomeTeaser__description-text > p {
+  font-size: 24px;
 }

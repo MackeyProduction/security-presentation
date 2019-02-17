@@ -1,3 +1,5 @@
+@import "variables";
+
 .page-header {
   padding-bottom: 9px;
   border-bottom: 1px solid #eee;
@@ -17,5 +19,68 @@
     text-align: justify;
     -ms-text-justify: inter-word;
     text-justify: inter-word;
+  }
+}
+
+.welcomeTeaser {
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  height: 100vh;
+  width: 100%;
+  min-height: $min-height;
+  background-size: cover;
+  background-image: url("../images/logo.jpg");
+  background-position: 100% 70%;
+
+  &.after {
+    position: absolute;
+    opacity: 0.6;
+    background: $darkGrey;
+  }
+
+  &-inner {
+    margin-top: 15%;
+    padding-right: 60px;
+    padding-left: 60px;
+    padding-top: 120px;
+
+    @media (max-width: 766px) {
+      padding-right: 0 !important;
+      padding-left: 0 !important;
+    }
+  }
+
+  &__description {
+    position: relative;
+    color: $white;
+    text-shadow: 0 1px 3px $textShadow;
+    z-index: 1;
+
+    a {
+      color: $white;
+
+      &:hover {
+        color: orange;
+        text-decoration: none;
+      }
+    }
+
+    &-headline > h1 {
+      margin-right: 10px;
+      margin-bottom: 20px;
+
+      @media (min-width: 560px) {
+        font-size: $wrapperHeadline;
+      }
+
+      @media (max-width: 766px) {
+        word-break: break-all;
+      }
+    }
+
+    &-text > p {
+      font-size: $wrapperContent;
+    }
   }
 }

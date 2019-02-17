@@ -2,10 +2,19 @@
 require "../app/src/autoload.php";
 require "../app/src/config.php";
 
-$config = \App\Configuration::getConfiguration();
+use App\Configuration;
+use App\Controller\IndexController;
+
+$config = Configuration::getConfiguration();
 
 if (!isset($_SERVER['PATH_INFO'])) {
     $_SERVER['PATH_INFO'] = "/";
+}
+
+// Default page
+if (strlen($_SERVER['PATH_INFO']) === 0) {
+    $home = new IndexController();
+    $home->execute();
 }
 
 foreach ($config['routing'] as $key => $c) {
