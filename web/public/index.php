@@ -2,6 +2,8 @@
 require "../app/src/autoload.php";
 require "../app/src/config.php";
 
+$config = \App\Configuration::getConfiguration();
+
 if (!isset($_SERVER['PATH_INFO'])) {
     $_SERVER['PATH_INFO'] = "/";
 }

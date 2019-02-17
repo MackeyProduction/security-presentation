@@ -1,0 +1,23 @@
+/* line 1, ../scss/app.scss */
+.page-header {
+  padding-bottom: 9px;
+  border-bottom: 1px solid #eee;
+}
+
+/* line 6, ../scss/app.scss */
+.review {
+  padding-top: 10px;
+}
+/* line 9, ../scss/app.scss */
+.review__author {
+  width: 100%;
+  margin-bottom: 6px;
+}
+/* line 14, ../scss/app.scss */
+.review__comment {
+  width: 100%;
+  margin-bottom: 10px;
+  text-align: justify;
+  -ms-text-justify: inter-word;
+  text-justify: inter-word;
+}

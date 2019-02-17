@@ -9,6 +9,7 @@
 namespace App\Controller;
 
 use App\Factories\AbstractController;
+use App\Model\Product;
 
 /**
  * Class ExampleController
@@ -18,10 +19,16 @@ class ExampleController extends AbstractController
 {
     function execute()
     {
-        // TODO: Implement execute() method.
+        $product = new Product();
+        $obj = $product->findAll();
+
+        if (isset($_GET['search'])) {
+            $result = $_GET['search'];
+            $obj = $product->findByName($result);
+        }
 
         return $this->render('example.phtml', [
-            'result' => 'Til'
+            'products' => $obj
         ]);
     }
 }

@@ -1,0 +1,21 @@
+.page-header {
+  padding-bottom: 9px;
+  border-bottom: 1px solid #eee;
+}
+
+.review {
+  padding-top: 10px;
+
+  &__author {
+    width: 100%;
+    margin-bottom: 6px;
+  }
+
+  &__comment {
+    width: 100%;
+    margin-bottom: 10px;
+    text-align: justify;
+    -ms-text-justify: inter-word;
+    text-justify: inter-word;
+  }
+}

@@ -3,8 +3,131 @@
 <head>
     <meta charset="UTF-8">
     <title>XSS</title>
+
+    <link rel="stylesheet" type="text/css" href="assets/css/app.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
+
+    <script rel="script" type="application/javascript" src="assets/js/jquery-3.3.1.min.js"></script>
+    <script rel="script" type="application/javascript" src="assets/js/bootstrap.js"></script>
 </head>
 <body>
-Das ist ein Test.
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="#">IT-Fabrik</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Software</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdown01">
+                        <a class="dropdown-item" href="#">Betriebssysteme</a>
+                        <a class="dropdown-item" href="#">Brennprogramme</a>
+                        <a class="dropdown-item" href="#">Audioprogramme</a>
+                        <a class="dropdown-item" href="#">Office</a>
+                        <a class="dropdown-item" href="#">Sicherheit</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Hardware</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdown01">
+                        <a class="dropdown-item" href="#">Rechner</a>
+                        <a class="dropdown-item" href="#">Mainboards</a>
+                        <a class="dropdown-item" href="#">Grafikkarte</a>
+                        <a class="dropdown-item" href="#">Monitore</a>
+                        <a class="dropdown-item" href="#">Netzteile</a>
+                        <a class="dropdown-item" href="#">Gehäuse</a>
+                        <a class="dropdown-item" href="#">Arbeitsspeicher</a>
+                        <a class="dropdown-item" href="#">Prozessoren</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Unsere Angebote</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-5">
+    <?php $obj = $arguments['products']->fetch_object() ?>
+    <div class="row">
+        <div class="col text-center">
+            <img width="320" height="320" src="assets/images/<?php echo $obj->product_image; ?>">
+        </div>
+        <div class="col">
+            <div class="row">
+                <div class="col">
+                    <div class="row">
+                        <div class="col-lg-12 mb-2">
+                            <strong class="card-title">Artikelnummer:</strong>
+                            <p class="card-text">
+                                <?php echo $obj->productNr; ?>
+                            </p>
+                        </div>
+                        <div class="col-lg-12 mb-2">
+                            <strong class="card-title">Produkt-Kategorie:</strong>
+                            <p class="card-text">
+                                <?php echo $obj->productCategory_name; ?>
+                            </p>
+                        </div>
+                        <div class="col-lg-12 mb-2">
+                            <strong class="card-title">Produkttyp:</strong>
+                            <p class="card-text">
+                                <?php echo $obj->productType_name; ?>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <h2 style="color: orange; font-weight: 800"><?php echo $obj->product_price; ?> €</h2>
+                    <strong style="color: #28a745;">
+                        <?php echo $obj->product_available; ?> Waren verfügbar.
+                    </strong>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12 mt-2">
+            <strong class="card-title">Beschreibung:</strong>
+            <p class="card-text text-justify">
+                <?php echo $obj->product_description; ?>
+            </p>
+        </div>
+    </div>
+
+    <div class="mt-5">
+        <div class="page-header">
+            <h2>Kommentare</h2>
+        </div>
+
+        <?php while ($obj = $arguments['reviews']->fetch_object()): ?>
+        <div class="review mb-5">
+            <div class="review__author">
+                <strong>Name: </strong> <?php echo $obj->firstname; ?>
+            </div>
+            <div class="review__comment">
+                <?php echo $obj->recension; ?>
+            </div>
+        </div>
+        <?php endwhile; ?>
+
+        <form class="mb-5" method="POST" action="example-2.php">
+            <div class="form-group">
+                <label for="customerName">Name</label>
+                <input name="customerName" type="text" class="form-control" id="customerName" aria-describedby="emailHelp" value="<?php echo $arguments['customer']->fetch_object()->firstname; ?>" disabled>
+            </div>
+            <div class="form-group">
+                <label for="customerReview">Kommentar</label>
+                <textarea name="customerReview" rows="5" type="text" class="form-control" id="customerReview" placeholder="Deine Rezension..."></textarea>
+            </div>
+            <input type="submit" class="btn btn-primary" value="Absenden">
+        </form>
+    </div>
+</div>
 </body>
 </html>
